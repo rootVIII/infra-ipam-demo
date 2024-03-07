@@ -1,10 +1,12 @@
 
 resource "awscc_ec2_ipam" "main" {
   operating_regions = var.operating_regions
-  tags = [{
+  tags = concat([{
     key   = "Name"
     value = "global-ipam"
-  }]
+    }],
+    var.shared_tags
+  )
 }
 
 resource "awscc_ec2_ipam_pool" "root" {

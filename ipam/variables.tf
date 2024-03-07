@@ -19,6 +19,11 @@ variable "provisioned_cidrs_region2" {
   type        = list(map(string))
 }
 
+variable "shared_tags" {
+  description = "Shared tags from root module"
+  type        = list(map(string))
+}
+
 variable "region1" {
   description = "AWS region1 set in root module"
   type        = string

@@ -5,9 +5,11 @@ resource "aws_vpc" "vpc_region1" {
   ipv4_ipam_pool_id   = var.ipv4_ipam_pool_id_region1
   ipv4_netmask_length = 24
 
-  tags = {
-    Name = "Region 1 VPC"
-  }
+  tags = merge({
+    Name = "us-east-1"
+    },
+    var.shared_tags
+  )
 }
 
 resource "aws_vpc" "vpc_region2" {

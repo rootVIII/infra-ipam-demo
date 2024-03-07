@@ -9,6 +9,7 @@ module "ipam" {
   root_provisioned_cidrs    = var.root_provisioned_cidrs
   provisioned_cidrs_region1 = var.provisioned_cidrs_region1
   provisioned_cidrs_region2 = var.provisioned_cidrs_region2
+  shared_tags               = module.tags_shared.tags
 }
 
 module "network" {
@@ -22,4 +23,13 @@ module "network" {
   environment               = var.environment
   ipv4_ipam_pool_id_region1 = module.ipam.ipam_pool_ids[0]
   ipv4_ipam_pool_id_region2 = module.ipam.ipam_pool_ids[1]
+  shared_tags               = module.tags_shared.tags_aws
+}
+
+module "tags_shared" {
+  source = "aws-ia/label/aws"
+  tags = {
+    terraform  = true
+    CostCenter = "123456"
+  }
 }

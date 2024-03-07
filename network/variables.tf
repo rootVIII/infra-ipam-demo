@@ -19,3 +19,8 @@ variable "ipv4_ipam_pool_id_region2" {
   description = "Set in ipam module output"
   type        = string
 }
+
+variable "shared_tags" {
+  description = "Shared tags from root module"
+  type        = map(string)
+}
