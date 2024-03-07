@@ -1,0 +1,5 @@
+.idea
+.vs*
+.terraform*
+terraform.tfstate*
+infra-key*
