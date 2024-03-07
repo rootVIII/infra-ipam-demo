@@ -13,3 +13,13 @@ output "region2" {
   description = "Region 2"
   value       = var.region2
 }
+
+output "vpc1_id" {
+  description = "VPC ID 1"
+  value       = module.network.vpc_id1
+}
+
+output "vpc2_id" {
+  description = "VPC ID 2"
+  value       = module.network.vpc_id2
+}
