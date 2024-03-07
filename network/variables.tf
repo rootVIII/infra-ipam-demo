@@ -1,14 +1,4 @@
 
-variable "region1" {
-  description = "AWS region 1 set in root module"
-  type        = string
-}
-
-variable "region2" {
-  description = "AWS region 2 set in root module"
-  type        = string
-}
-
 variable "vpc_cidr" {
   description = "CIDR block for VPC"
   type        = string

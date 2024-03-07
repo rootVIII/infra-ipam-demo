@@ -20,29 +20,15 @@ resource "awscc_ec2_ipam_pool" "root" {
   }]
 }
 
-resource "awscc_ec2_ipam_pool" "region1" {
+resource "awscc_ec2_ipam_pool" "ipam_pools" {
+  count               = 2
   address_family      = "ipv4"
   auto_import         = false
   ipam_scope_id       = awscc_ec2_ipam.main.private_default_scope_id
-  locale              = "us-east-1"
+  locale              = local.cidr_blocks[count.index].region
   source_ipam_pool_id = awscc_ec2_ipam_pool.root.ipam_pool_id
 
-  provisioned_cidrs = var.provisioned_cidrs_region1
-
-  tags = [{
-    key   = "Name"
-    value = "regional-pool-region1"
-  }]
-}
-
-resource "awscc_ec2_ipam_pool" "region2" {
-  address_family      = "ipv4"
-  auto_import         = false
-  ipam_scope_id       = awscc_ec2_ipam.main.private_default_scope_id
-  locale              = "us-east-2"
-  source_ipam_pool_id = awscc_ec2_ipam_pool.root.ipam_pool_id
-
-  provisioned_cidrs = var.provisioned_cidrs_region2
+  provisioned_cidrs = local.cidr_blocks[count.index].cidrs
 
   tags = [{
     key   = "Name"
