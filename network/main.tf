@@ -20,8 +20,3 @@ resource "aws_vpc" "vpc_region2" {
     Name = "Region 2 VPC"
   }
 }
-
-locals {
-  vpc1_az = "${var.region1}a"
-  vpc2_az = "${var.region2}a"
-}
